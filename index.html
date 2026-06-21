@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海外 eSIM 完整指南 · 中国大陆用户零基础手册</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f9fafb;
+    --bg-code: #f3f4f6;
+    --border: #e5e7eb;
+    --border-strong: #d1d5db;
+    --text: #111827;
+    --text-muted: #6b7280;
+    --text-subtle: #9ca3af;
+    --brand: #635bff;
+    --brand-soft: #ebe9ff;
+    --accent-green: #00875a;
+    --accent-green-soft: #d1fadf;
+    --accent-amber: #b54708;
+    --accent-amber-soft: #fff6ed;
+    --accent-red: #b42318;
+    --accent-red-soft: #fee4e2;
+    --accent-blue: #1849a9;
+    --accent-blue-soft: #d1e0ff;
+    --shadow-sm: 0 1px 2px rgba(16,24,40,.05);
+    --shadow: 0 4px 12px rgba(16,24,40,.08);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN",
+                 "Noto Sans CJK SC", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "SF Mono", Consolas, Monaco, "Liberation Mono", monospace;
+    font-size: 0.9em;
+    background: var(--bg-code);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #d6336c;
+  }
+
+  /* ============== Layout ============== */
+  .layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 0;
+    min-height: 100vh;
+  }
+  aside.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+    padding: 32px 24px;
+    background: var(--bg);
+  }
+  .toc-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+  .toc-brand .logo {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, #635bff, #00d4ff);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; font-weight: 700;
+  }
+  .toc h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-subtle);
+    margin: 24px 0 8px;
+    font-weight: 600;
+  }
+  .toc h4:first-of-type { margin-top: 0; }
+  .toc ul { list-style: none; padding: 0; margin: 0; }
+  .toc li a {
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.5;
+    transition: all .15s;
+  }
+  .toc li a:hover {
+    background: var(--bg-subtle);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .toc li a.active {
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-weight: 600;
+  }
+
+  main.content {
+    padding: 48px 64px;
+    max-width: 880px;
+  }
+
+  /* ============== Hero ============== */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 36px;
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    display: inline-block;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+  }
+  .lede {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  .meta-row span strong { color: var(--text); font-weight: 600; }
+
+  /* ============== Roadmap ============== */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin: 32px 0 12px;
+  }
+  .roadmap-step {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+    position: relative;
+  }
+  .roadmap-step::after {
+    content: "→";
+    position: absolute;
+    right: -10px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-subtle);
+    font-size: 14px;
+  }
+  .roadmap-step:last-child::after { display: none; }
+  .roadmap-step .num {
+    display: block;
+    font-size: 11px;
+    color: var(--text-subtle);
+    margin-bottom: 2px;
+  }
+
+  /* ============== Section ============== */
+  section.chapter {
+    margin: 64px 0;
+    scroll-margin-top: 32px;
+  }
+  section.chapter > h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  section.chapter > h2 .ch-num {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brand);
+    background: var(--brand-soft);
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+  }
+  .chapter-intro {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin: 0 0 32px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 40px 0 12px;
+    scroll-margin-top: 32px;
+    letter-spacing: -0.005em;
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 24px 0 8px;
+    color: var(--text);
+  }
+  p { margin: 0 0 14px; }
+
+  /* ============== Callouts ============== */
+  .callout {
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-left: 3px solid;
+    background: var(--bg-subtle);
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .callout.info { border-color: var(--accent-blue); background: var(--accent-blue-soft); }
+  .callout.info .callout-title { color: var(--accent-blue); }
+  .callout.warn { border-color: var(--accent-amber); background: var(--accent-amber-soft); }
+  .callout.warn .callout-title { color: var(--accent-amber); }
+  .callout.danger { border-color: var(--accent-red); background: var(--accent-red-soft); }
+  .callout.danger .callout-title { color: var(--accent-red); }
+  .callout.tip { border-color: var(--accent-green); background: var(--accent-green-soft); }
+  .callout.tip .callout-title { color: var(--accent-green); }
+  .callout .icon { font-size: 16px; }
+
+  /* ============== Steps ============== */
+  .steps {
+    counter-reset: step;
+    margin: 24px 0;
+  }
+  .step {
+    position: relative;
+    padding: 0 0 32px 56px;
+    counter-increment: step;
+  }
+  .step:not(:last-child) {
+    border-left: 2px dashed var(--border-strong);
+    margin-left: 18px;
+  }
+  .step::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 0;
+    width: 36px; height: 36px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .step h4 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .step p { margin: 0 0 12px; color: var(--text); }
+  .step .step-detail {
+    background: var(--bg-subtle);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .step .step-detail strong { color: var(--text); }
+
+  /* v12: 教程横排 - 步骤卡片横向并排, 每个卡片内部竖排 (文字在上, 图片在下) */
+  .steps {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 18px;
+    margin: 24px 0;
+    padding: 8px 4px 24px 4px;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* 让横向滚动更明显 */
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand) transparent;
+  }
+  .steps::-webkit-scrollbar { height: 10px; }
+  .steps::-webkit-scrollbar-track { background: var(--bg-subtle); border-radius: 5px; }
+  .steps::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 5px; }
+
+  /* 单个 step: 竖排卡片, 较大固定宽度 */
+  .step {
+    flex: 0 0 380px !important;
+    width: 380px !important;
+    min-width: 380px !important;
+    max-width: 380px !important;
+    box-sizing: border-box;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    counter-increment: step;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0;
+    scroll-snap-align: start;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .step:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+  /* 卡片头部: 编号 + 标题 */
+  .step::before {
+    content: counter(step);
+    position: absolute;
+    top: 12px; left: 12px;
+    width: 28px; height: 28px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(99, 91, 255, .35);
+  }
+  .step h4 {
+    margin: 0 !important;
+    padding: 44px 16px 8px 50px !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+    min-height: 60px;
+  }
+  .step p {
+    margin: 0 16px 8px !important;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .step .step-detail {
+    background: var(--bg-subtle);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 6px 12px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .step .step-detail strong { color: var(--text); }
+  .step ul, .step ol {
+    margin: 4px 16px 8px 28px !important;
+    font-size: 12.5px;
+    color: var(--text);
+  }
+  .step ul li, .step ol li { margin-bottom: 4px; }
+
+  /* 文字区: 固定高度, 溢出滚动 */
+  .step .step-text {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-y: auto;
+    max-height: 260px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* 图片区: 固定高度, 所有图居中适配, 视觉统一 */
+  .step > .step-img {
+    flex: 0 0 340px !important;
+    width: 100% !important;
+    height: 340px !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    background: var(--bg-subtle);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .step > .step-img .step-img-scroll {
+    overflow: visible !important;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step > .step-img figure {
+    margin: 0 !important;
+    max-width: none !important;
+    text-align: center;
+    width: 100% !important;
+  }
+  .step > .step-img img {
+    /* 统一固定尺寸框: 所有图不论原始比例都在 280x300 盒内居中 */
+    width: 280px !important;
+    height: 300px !important;
+    max-width: 280px !important;
+    max-height: 300px !important;
+    object-fit: contain;
+    display: block !important;
+    margin: 0 auto;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+  /* 表格/非图片内容在 step-img 中也正确显示 */
+  .step > .step-img table {
+    width: 100% !important;
+    font-size: 12px !important;
+    border-collapse: collapse;
+    margin: 0 !important;
+  }
+  .step > .step-img table th,
+  .step > .step-img table td {
+    padding: 5px 8px !important;
+    border: 1px solid var(--border) !important;
+    font-size: 12px !important;
+  }
+  .step > .step-img > div:not(.step-img-scroll) {
+    width: 100%;
+    font-size: 12px;
+  }
+  .step > .step-img figcaption {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* 去掉原本左侧虚线 (现在每个卡片是独立单元) */
+  .step:not(:last-child) { border-left: 1px solid var(--border) !important; }
+
+  /* 响应式: 窄屏改竖排单列 */
+  @media (max-width: 860px) {
+    .steps {
+      flex-direction: column !important;
+      overflow-x: visible !important;
+    }
+    .step {
+      flex: 0 0 auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+    .step .step-text { max-height: none; }
+  }
+
+  /* ============== Image blocks ============== */
+  figure {
+    margin: 16px 0 20px;
+    text-align: center;
+  }
+  figure img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* OVERRIDE: screenshot strip figures must stay horizontal */
+  .screenshot-strip figure {
+    max-width: none !important;
+  }
+  .screenshot-strip figure img {
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+  figcaption {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* ============== Details (collapsible) ============== */
+  details.collapsible {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: 16px 0;
+    background: var(--bg-subtle);
+    overflow: hidden;
+  }
+  details.collapsible[open] { background: var(--bg); }
+  details.collapsible > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
+  details.collapsible > summary::-webkit-details-marker { display: none; }
+  details.collapsible > summary::before {
+    content: "▶";
+    font-size: 10px;
+    color: var(--text-muted);
+    transition: transform .2s;
+    display: inline-block;
+  }
+  details.collapsible[open] > summary::before { transform: rotate(90deg); }
+  details.collapsible > .collapsible-body {
+    padding: 0 20px 20px;
+  }
+  details.collapsible > .collapsible-body figure:last-child { margin-bottom: 0; }
+
+  /* Horizontal scroll for screenshot galleries */
+  .screenshot-strip {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 16px;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    padding: 12px 4px 16px;
+    margin: 0 -4px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .screenshot-strip::-webkit-scrollbar { height: 10px; }
+  .screenshot-strip::-webkit-scrollbar-track { background: var(--bg-subtle); border-radius: 4px; }
+  .screenshot-strip::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .screenshot-strip::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  .screenshot-strip > figure {
+    flex: 0 0 320px !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    margin: 0 !important;
+    scroll-snap-align: start;
+    text-align: center;
+  }
+  .screenshot-strip > figure > img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin: 0 !important;
+  }
+  .screenshot-strip > figure > figcaption {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  /* Chapter-level strip: full width section, slightly different layout */
+  .chapter-strip-wrap {
+    margin: 32px 0 24px;
+    padding: 20px 16px 16px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .chapter-strip-wrap > .strip-hint {
+    margin: 0 0 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .chapter-strip {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 8px;
+  }
+  .strip-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 8px 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .strip-hint::before {
+    content: "→";
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  /* Wheel → horizontal scroll inside screenshot strips */
+  .screenshot-strip { cursor: grab; }
+  .screenshot-strip.dragging { cursor: grabbing; user-select: none; scroll-behavior: auto; }
+
+  /* ============== Tables ============== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  thead {
+    background: var(--bg-subtle);
+  }
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg-subtle); }
+
+  /* ============== Cards / Plan picker ============== */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .plan-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    background: var(--bg);
+    transition: all .15s;
+  }
+  .plan-card:hover {
+    border-color: var(--brand);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+  .plan-card .plan-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .plan-card .plan-tag {
+    display: inline-block;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .plan-card .plan-price {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .plan-card ul {
+    margin: 0; padding-left: 18px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .plan-card ul li { margin-bottom: 4px; }
+
+  /* ============== Lists ============== */
+  ul, ol { padding-left: 22px; margin: 0 0 16px; }
+  ul li, ol li { margin-bottom: 6px; }
+
+  /* ============== FAQ ============== */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .faq-a { color: var(--text-muted); }
+
+  /* ============== Glossary ============== */
+  .glossary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .glossary-term {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    background: var(--bg);
+  }
+  .glossary-term dt {
+    font-weight: 600;
+    color: var(--brand);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .glossary-term dd {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* ============== Footer ============== */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-top: 80px;
+    color: var(--text-subtle);
+    font-size: 13px;
+  }
+  .doc-footer .updated {
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  /* ============== Mobile ============== */
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; }
+    aside.toc {
+      position: static;
+      height: auto;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    aside.toc.open {
+      max-height: none;
+      padding: 24px 20px;
+    }
+    .toc-toggle {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toc-toggle::after {
+      content: " ▼";
+      float: right;
+      color: var(--text-muted);
+    }
+    main.content { padding: 32px 20px; }
+    h1 { font-size: 30px; }
+    .roadmap { grid-template-columns: repeat(3, 1fr); }
+    .roadmap-step::after { display: none; }
+  }
+  .toc-toggle { display: none; }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ========== SIDEBAR TOC ========== -->
+  <div class="toc-toggle" onclick="document.querySelector('aside.toc').classList.toggle('open')">
+    📑 目录导航
+  </div>
+  <aside class="toc">
+    <div class="toc-brand">
+      <div class="logo">e</div>
+      <div>海外 eSIM 完整指南</div>
+    </div>
+    <h4>开始</h4>
+    <ul>
+      <li><a href="#ch-00">00 · 开始之前</a></li>
+      <li><a href="#ch-01">01 · 基础知识</a></li>
+    </ul>
+    <h4>主流程</h4>
+    <ul>
+      <li><a href="#ch-02">02 · 准备工作</a></li>
+      <li><a href="#ch-03">03 · 获取英国号码（giffgaff）</a></li>
+      <li><a href="#ch-04">04 · 获取美国号码（Saily）</a></li>
+      <li><a href="#ch-05">05 · 支付方案（Bybit Card）</a></li>
+      <li><a href="#ch-06">06 · 长期保号</a></li>
+    </ul>
+    <h4>参考</h4>
+    <ul>
+      <li><a href="#ch-07">07 · 方案推荐</a></li>
+      <li><a href="#ch-08">08 · FAQ</a></li>
+      <li><a href="#ch-09">09 · 附录</a></li>
+    </ul>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="content">
+
+    <!-- ============== HERO ============== -->
+    <header class="hero">
+      <span class="eyebrow">完整指南 · v1.0</span>
+      <h1>从零获取一个可长期使用的海外手机号</h1>
+      <p class="lede">本指南帮助中国大陆用户，从注册、支付、激活到长期保号，全流程走通 giffgaff（英国）+ Saily（美国）+ Bybit Card（支付）三种方案。零基础也能照着做。</p>
+      <div class="meta-row">
+        <span><strong>预计耗时：</strong>15 ~ 30 分钟</span>
+        <span><strong>目标读者：</strong>中国大陆用户</span>
+        <span><strong>前置经验：</strong>零基础</span>
+        <span><strong>更新时间：</strong>2026-06</span>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-step"><span class="num">1</span>准备工作</div>
+        <div class="roadmap-step"><span class="num">2</span>选择方案</div>
+        <div class="roadmap-step"><span class="num">3</span>获取号码</div>
+        <div class="roadmap-step"><span class="num">4</span>安装 eSIM</div>
+        <div class="roadmap-step"><span class="num">5</span>完成激活</div>
+        <div class="roadmap-step"><span class="num">6</span>长期保号</div>
+      </div>
+    </header>
+
+    <!-- ============== CHAPTER 00 ============== -->
+    <section class="chapter" id="ch-00">
+      <h2><span class="ch-num">00</span>开始之前</h2>
+      <p class="chapter-intro">在动手之前，请花 3 分钟了解整个流程的目标、适用人群和基本规则，避免中途走弯路。</p>
+
+      <h3>这份教程能帮你做什么</h3>
+      <p>本指南面向<strong>中国大陆用户</strong>，目标是用最低门槛完成：</p>
+      <ul>
+        <li>获取一个<strong>海外手机号</strong>（英国或美国）</li>
+        <li>下载并<strong>激活 eSIM</strong>，让国行手机也具备海外通话/短信能力</li>
+        <li>使用海外<strong>支付工具</strong>（如 Bybit Card）支付后续费用</li>
+        <li>通过简单的<strong>保号操作</strong>让号码长期可用</li>
+        <li>用于注册 Telegram、Gmail、海外银行等需要海外手机号的服务</li>
+      </ul>
+
+      <h3>不适合谁</h3>
+      <ul>
+        <li>只是想短期出国一次性用几天 → 直接买漫游套餐更划算</li>
+        <li>希望"完全免费"获取海外号码 → 几乎不可能，所有方案都需要至少一次支付</li>
+        <li>不愿完成 KYC（身份认证） → 所有合规方案都要求 KYC</li>
+      </ul>
+
+      <h3>风险提示</h3>
+      <div class="callout warn">
+        <div class="callout-title"><span class="icon">⚠️</span>重要风险提示</div>
+        <p><strong>合规要求：</strong>部分服务要求身份认证（KYC），请使用本人真实信息。</p>
+        <p><strong>规则差异：</strong>不同运营商对保号、停机、注销规则不同，本文会明确标注。</p>
+        <p><strong>费用风险：</strong>加密货币和虚拟卡价格波动，请勿投入超出承受能力的资金。</p>
+        <p><strong>法律责任：</strong>请遵守中国及海外目的地的法律法规与服务条款，<strong>本文仅作技术教程，不构成任何投资或合规建议</strong>。</p>
+      </div>
+    </section>
+
+    <!-- ============== CHAPTER 01 ============== -->
+    <section class="chapter" id="ch-01">
+      <h2><span class="ch-num">01</span>基础知识</h2>
+      <p class="chapter-intro">如果你已经完全了解 eSIM、KYC、虚拟卡等概念，可以跳过本章直接看 <a href="#ch-02">第二章</a>。</p>
+
+      <h3>核心术语</h3>
+      <div class="glossary">
+        <dl class="glossary-term">
+          <dt>eSIM</dt>
+          <dd>嵌入式 SIM 卡，直接写入手机芯片，无需物理卡片。国行手机大多支持，但部分机型需要"小白卡"辅助写入。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>KYC</dt>
+          <dd>Know Your Customer，身份认证。所有合规运营商和支付工具都要求实名，等同于国内"实名认证"。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>USDT</dt>
+          <dd>泰达币，与美元 1:1 锚定的加密货币。在大陆用户向海外工具充值时常用作"中间货币"。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>LPA</dt>
+          <dd>Local Profile Assistant，手机系统自带的 eSIM 配置文件写入工具。激活码通常以 <code>LPA:1$...</code> 开头。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>VPN</dt>
+          <dd>虚拟专用网络。注册 Bybit 等海外服务时通常需要挂 VPN（推荐台湾/韩国/澳大利亚节点）。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>虚拟卡</dt>
+          <dd>没有实体卡片的银行卡，通常由海外金融机构发行。Bybit Card 就是一种万事达虚拟借记卡。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>运营商</dt>
+          <dd>提供手机网络服务的公司。本教程涉及 giffgaff（英国）、Saily（美国）等。</dd>
+        </dl>
+        <dl class="glossary-term">
+          <dt>保号</dt>
+          <dd>维持手机号处于活跃状态。本教程方案的成本：giffgaff 约 ¥10/年，Saily 约 ¥7/月。</dd>
+        </dl>
+      </div>
+
+      <h3>三种方案速览</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>方案</th>
+            <th>号码归属</th>
+            <th>开通成本</th>
+            <th>月租</th>
+            <th>支付方式</th>
+            <th>难度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>giffgaff</strong></td>
+            <td>英国 (+44)</td>
+            <td>£10（约 ¥90）</td>
+            <td>0（保号仅需发短信）</td>
+            <td>Visa / Mastercard</td>
+            <td>⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>Saily</strong></td>
+            <td>美国 (+1)</td>
+            <td>$0.6（约 ¥4）</td>
+            <td>$0.99（约 ¥7）</td>
+            <td>Apple Pay / Visa / Mastercard</td>
+            <td>⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>Bybit Card</strong></td>
+            <td>— （非号码）</td>
+            <td>免费</td>
+            <td>0（无年费）</td>
+            <td>需用 USDT 充值</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============== CHAPTER 02 ============== -->
+    <section class="chapter" id="ch-02">
+      <h2><span class="ch-num">02</span>准备工作</h2>
+      <p class="chapter-intro">不同方案需要的物料略有差异，下表先汇总，再分节说明。</p>
+
+      <h3>通用准备清单</h3>
+      <ul>
+        <li><strong>一部手机</strong>：iOS 13+ / Android 9+。国行 iPhone 也支持 eSIM，但部分 Android 机型需要"小白卡"。</li>
+        <li><strong>身份证</strong>：本人有效身份证（用于 KYC），年满 18 周岁。</li>
+        <li><strong>邮箱</strong>：建议 Gmail 或 Outlook，避免用 163 / QQ 邮箱（部分海外服务会拦截）。</li>
+        <li><strong>VPN（网络代理）</strong>：注册 Bybit 等海外服务时必须挂 VPN，推荐节点：<strong>台湾 / 韩国 / 澳大利亚</strong>。</li>
+        <li><strong>支付工具</strong>：
+          <ul>
+            <li>giffgaff / Saily：国内双标信用卡（Visa / Mastercard）即可</li>
+            <li>Bybit Card：需要先在 OKX 买 USDT 再充值</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="callout info">
+        <div class="callout-title"><span class="icon">💡</span>国行手机是否支持 eSIM？</div>
+        <p>iPhone 13 及以上国行机型原生支持 eSIM；部分 Android 机型（如华为）不支持原生 eSIM，需要购买"小白卡"（约 ¥20）配合 EPUICC 软件写入。</p>
+      </div>
+
+      <h3>决策：选哪个方案？</h3>
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div class="plan-tag">推荐</div>
+          <div class="plan-name">giffgaff</div>
+          <div class="plan-price">£10 一次性</div>
+          <ul>
+            <li>英国 +44 号码</li>
+            <li>无月租</li>
+            <li>支持保号（半年一条短信）</li>
+            <li>注册海外服务最通用</li>
+            <li>适合：长期主用</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-tag">备用</div>
+          <div class="plan-name">Saily</div>
+          <div class="plan-price">$0.6 开通 + $0.99/月</div>
+          <ul>
+            <li>美国 +1 号码</li>
+            <li>月租便宜</li>
+            <li>含 30 分钟通话 + 30 条短信</li>
+            <li>支持大陆身份证直申</li>
+            <li>适合：备用号 / 注册美服</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-tag">支付</div>
+          <div class="plan-name">Bybit Card</div>
+          <div class="plan-price">0 年费 + 2%~10% 返现</div>
+          <ul>
+            <li>万事达虚拟卡</li>
+            <li>用于支付 giffgaff / Saily / 订阅服务</li>
+            <li>需要先完成 Bybit 注册 + OKX 买币</li>
+            <li>适合：需要海外消费场景</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">✅</span>最低成本组合</div>
+        <p>如果你只想要一个海外号码，<strong>只做 giffgaff</strong> 即可，国内双标信用卡就能搞定。如果你还需要海外消费能力，加上 <strong>Bybit Card</strong>。</p>
+      </div>
+    </section>
+
+
+    <!-- ============== CHAPTER 03 - GIFFGAFF ============== -->
+    <section class="chapter" id="ch-03">
+      <h2><span class="ch-num">03</span>获取英国号码（giffgaff）</h2>
+      <h3>3.1 注册并登录 App</h3>
+      <div class="callout info">
+        <div class="callout-title"><span class="icon">🔗</span>准备工作</div>
+        <p>1. 先到 giffgaff 官网注册账号：<a href="https://www.giffgaff.com/auth/register" target="_blank" rel="noopener">www.giffgaff.com/auth/register</a>（需挂 VPN）</p>
+        <p>2. 国内无法直接安装官方 App，请下载<strong>魔改版 giffgaff APK</strong>：<a href="https://bit.ly/4oeOel8" target="_blank" rel="noopener">bit.ly/4oeOel8</a>（魔改版绕过国内限制，可直接调用 eSIM bypass 提取激活码）</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-text">
+          <h4>App 版本过旧提示</h4>
+          <p>点击右侧「Update in 60 seconds」按钮，无需真正更新。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image1.png" alt="App 版本过旧提示">
+            <figcaption>App 版本过旧提示</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-text">
+          <h4>Cookie 同意弹窗</h4>
+          <p>点击「Accept all cookies」接受全部 Cookie。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image2.png" alt="Cookie 同意弹窗">
+            <figcaption>Cookie 同意弹窗</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-text">
+          <h4>登录账号（邮箱 + 验证码）</h4>
+          <p>点击「Log in」→ 浏览器自动打开登录页 → 输入注册邮箱和密码 → 填写邮箱收到的验证码 → 自动重定向回 App。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image3.png" alt="登录账号（邮箱 + 验证码）">
+            <figcaption>登录账号（邮箱 + 验证码）</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-text">
+          <h4>选 eSIM 并进入套餐</h4>
+          <p>右上角选 eSIM 图标，再点「Choose your plan」。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image4.png" alt="选 eSIM 并进入套餐">
+            <figcaption>选 eSIM 并进入套餐</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>3.2 选 PAYG 零月租方案并充值 £10</h3>
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">💡</span>最低充值</div>
+        <p>£10 是激活 SIM 卡的最低充值额，也是 PAYG 按需付费套餐的最低要求。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">5</span>
+        <div class="step-text">
+          <h4>选择 PAYG 套餐</h4>
+          <p>滚动到底部，选择「I don't want a plan」（零月租方案），点击「Continue」。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image5.png" alt="选择 PAYG 套餐">
+            <figcaption>选择 PAYG 套餐</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">6</span>
+        <div class="step-text">
+          <h4>确认 PAYG 费率</h4>
+          <p>确认 PAYG 费率（10p/MB 数据、10p/条短信、25p/分钟通话），点击「Continue」进入充值。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image6.png" alt="确认 PAYG 费率">
+            <figcaption>确认 PAYG 费率</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">7</span>
+        <div class="step-text">
+          <h4>选择充值金额 £10</h4>
+          <p>左右滑动或直接选择「£10」（最低充值额），点击「Continue」。£10 也是激活 SIM 卡的最低要求。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image7.png" alt="选择充值金额 £10">
+            <figcaption>选择充值金额 £10</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">8</span>
+        <div class="step-text">
+          <h4>确认订单 + 选择支付方式</h4>
+          <p>确认订单显示 £10「Pay as you go」，向下滚动，点击「Payment method」进入支付方式选择。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image8.png" alt="确认订单 + 选择支付方式">
+            <figcaption>确认订单 + 选择支付方式</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">9</span>
+        <div class="step-text">
+          <h4>选择 Visa / Mastercard</h4>
+          <p>选择第一个选项（支持 Visa 或 Mastercard）。国内招商银行 Visa/Mastercard 可直接使用。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image9.png" alt="选择 Visa / Mastercard">
+            <figcaption>选择 Visa / Mastercard</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">10</span>
+        <div class="step-text">
+          <h4>同意服务条款</h4>
+          <p>向下滚动，勾选同意服务条款（Terms of Service），点击「Go to payment」。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image10.png" alt="同意服务条款">
+            <figcaption>同意服务条款</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">11</span>
+        <div class="step-text">
+          <h4>填写英国账单地址</h4>
+          <p>填写 Billing Address：使用地址生成器生成英国地址（国家、街道、城市、邮编）；建议选与支付卡所在国匹配的地址。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image11.png" alt="填写英国账单地址">
+            <figcaption>填写英国账单地址</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">12</span>
+        <div class="step-text">
+          <h4>确认账单地址并添加银行卡</h4>
+          <p>勾选「Your billing address and personal address are the same」，点击底部「Add card details」。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image12.png" alt="确认账单地址并添加银行卡">
+            <figcaption>确认账单地址并添加银行卡</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">13</span>
+        <div class="step-text">
+          <h4>填写银行卡信息并支付</h4>
+          <p>输入卡号、CVV、有效期（此页面 App 屏蔽录屏，显示为黑屏）→ 完成支付 → 等待邮件。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image13.png" alt="填写银行卡信息并支付">
+            <figcaption>填写银行卡信息并支付</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">14</span>
+        <div class="step-text">
+          <h4>查收欢迎邮件 — 获取手机号</h4>
+          <p>支付后等待片刻，查收邮箱中的 giffgaff 欢迎邮件，内含你的英国手机号及 £10 充值确认。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image14.png" alt="查收欢迎邮件 — 获取手机号">
+            <figcaption>查收欢迎邮件 — 获取手机号</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">15</span>
+        <div class="step-text">
+          <h4>回到 App — 准备提取 eSIM 激活码</h4>
+          <p>确认已拥有 UK 手机号，下一步将提取 eSIM 激活码——这是最关键的步骤，请仔细操作。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image15.png" alt="回到 App — 准备提取 eSIM 激活码">
+            <figcaption>回到 App — 准备提取 eSIM 激活码</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">16</span>
+        <div class="step-text">
+          <h4>点击「Continue to install eSIM」</h4>
+          <p>在 App 中点击「Continue to install eSIM」，修改版 App 将自动绕过 eSIM 硬件检测。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image16.png" alt="点击「Continue to install eSIM」">
+            <figcaption>点击「Continue to install eSIM」</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">17</span>
+        <div class="step-text">
+          <h4>eSIM 激活码自动提取并保存</h4>
+          <p>App 依次弹出「eSIM bypass」→ 激活信息 → 激活码 →「share completed skipping download」。激活码自动复制到剪贴板 → 发送至微信「文件传输助手」保存（LPA: 开头）。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/giffgaff/image17.png" alt="eSIM 激活码自动提取并保存">
+            <figcaption>eSIM 激活码自动提取并保存</figcaption>
+          <figure></div></div>
+        </div>
+              </div>
+
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">📱</span>eSIM 激活码转二维码</div>
+        <p>拿到 <code>LPA:1$...</code> 开头的激活码后，到 <a href="https://qrcode.show/" target="_blank" rel="noopener">qrcode.show</a> 把激活码转成二维码，然后用手机系统相机扫码即可写入 eSIM。</p>
+      </div>
+
+    </section><section class="chapter" id="ch-04">
+      <h2><span class="ch-num">04</span>获取美国号码（Saily）</h2>
+      <h3>4.1 注册账号 + 输入优惠码</h3>
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">🎁</span>优惠码</div>
+        <p>输入优惠码 <code>MEATRI8898</code> 即可把开通费从 $7.98 降到 <strong>$0.6</strong>。这是必填项，<strong>一定要先兑换再下单</strong>。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-text">
+          <h4>打开 Saily APP 注册账号</h4>
+          <p>下载并打开 Saily APP，注册账号后进入主页面，点击下方「探索电话号码」入口。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image1.png" alt="打开 Saily APP 注册账号">
+            <figcaption>打开 Saily APP 注册账号</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-text">
+          <h4>输入优惠码 MEATRI8898</h4>
+          <p>点击「低佣金」→ 下滑 → 在礼券码栏输入 <code>MEATRI8898</code> → 兑换成功，开通费用降至 $0.6。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image2.png" alt="输入优惠码 MEATRI8898">
+            <figcaption>输入优惠码 MEATRI8898</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>4.2 选择目的地 + 套餐方案</h3>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-text">
+          <h4>选择目的地</h4>
+          <p>回到主页点击「探索电话号码」→「获取电话号码」→ 选择目的地中国。注意：这里选中国是指 eSIM 可在中国使用，而非选中国号码。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image3.png" alt="选择目的地">
+            <figcaption>选择目的地</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-text">
+          <h4>选择套餐方案</h4>
+          <p>向下滑动 → 选择「30 分钟 / 30 条短信」的 1.99 美元套餐 → 勾选「抵用金」（月租降至 0.99 美元）。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image4.png" alt="选择套餐方案">
+            <figcaption>选择套餐方案</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>4.3 支付下单</h3>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">5</span>
+        <div class="step-text">
+          <h4>价格明细 — 总计 0.6 美元</h4>
+          <p>价格明细：小计 $7.98 − 优惠券 $5.39 − 抵用金 $1.99 = 总计 $0.60。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image5.png" alt="价格明细 — 总计 0.6 美元">
+            <figcaption>价格明细 — 总计 0.6 美元</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">6</span>
+        <div class="step-text">
+          <h4>结账支付 — Apple Pay / 信用卡</h4>
+          <p>使用抵用金支付 $1.99，支持 Apple Pay 或 Visa/Mastercard 信用卡。建议启用自动充值避免在中国无法充值。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image6.png" alt="结账支付 — Apple Pay / 信用卡">
+            <figcaption>结账支付 — Apple Pay / 信用卡</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">7</span>
+        <div class="step-text">
+          <h4>订单成功 — 电话号码已分配</h4>
+          <p>订单汇总：电话号码 +1 (XXX) XXX-XXXX，包月订阅，下次收费每月 $0.99。注意：支付成功 ≠ 已激活，还需完成身份验证。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image7.png" alt="订单成功 — 电话号码已分配">
+            <figcaption>订单成功 — 电话号码已分配</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>4.4 身份验证 + 安装 eSIM</h3>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">8</span>
+        <div class="step-text">
+          <h4>身份验证（KYC）— 选择中国 + 身份证</h4>
+          <p>选择签发国家「China（中国）」→ 选择证件类型「身份证」→ 按提示上传证件照片并完成人脸识别。支持身份证、护照、驾照。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image8.png" alt="身份验证（KYC）— 选择中国 + 身份证">
+            <figcaption>身份验证（KYC）— 选择中国 + 身份证</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">9</span>
+        <div class="step-text">
+          <h4>安装 eSIM — 扫码激活</h4>
+          <p>身份验证通过后，选择安装设备（eSTK / 小白卡 / 9eSIM 均可）→ 获取 eSIM 二维码 → 用另一台设备扫码安装。（保存截图）国行手机需购买小白卡（约 ¥20）通过 EPUICC 软件扫码导入。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image9.png" alt="安装 eSIM — 扫码激活">
+            <figcaption>安装 eSIM — 扫码激活</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">10</span>
+        <div class="step-text">
+          <h4>成功获得 +1 美国手机号！</h4>
+          <p>安装成功后 APP 界面刷新，正上方显示 +1 美国手机号（SIM #1 已安装），套餐 30 分钟 + 30 条短信（可能不显示，主要看手机状态栏）。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/saily/image10.png" alt="成功获得 +1 美国手机号！">
+            <figcaption>成功获得 +1 美国手机号！</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+    </section><section class="chapter" id="ch-05">
+      <h2><span class="ch-num">05</span>支付方案（Bybit Card）</h2>
+      <h3>5.1 注册 Bybit 并完成身份认证</h3>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-text">
+          <h4>下载 Bybit App</h4>
+          <p>访问 bybit.com 下载 App。iOS 需非国区 Apple ID（美区/港区）；安卓在官网下 APK 即可。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image1.png" alt="下载 Bybit App">
+            <figcaption>下载 Bybit App</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-text">
+          <h4>选择居住地 — 台湾</h4>
+          <p>App 会根据你当前的 IP 自动显示地区。教程使用台湾节点，所以显示台湾，点击确认。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image2.png" alt="选择居住地 — 台湾">
+            <figcaption>选择居住地 — 台湾</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-text">
+          <h4>选择 Global 全球账户</h4>
+          <p>务必选择 Global 全球账户。大陆用户必须全程挂 VPN（推荐台湾/韩国/澳大利亚节点）。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image3.png" alt="选择 Global 全球账户">
+            <figcaption>选择 Global 全球账户</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-text">
+          <h4>创建账户 — 邮箱 + 邀请码</h4>
+          <p>输入邮箱（建议 Outlook/Gmail），邀请码填 <code>QMBYWWZ</code> 获得新人福利。【注意：全程需填 2 次邀请码：注册 1 次 + 开卡 1 次】</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image4.png" alt="创建账户 — 邮箱 + 邀请码">
+            <figcaption>创建账户 — 邮箱 + 邀请码</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">5</span>
+        <div class="step-text">
+          <h4>欢迎页面 — 开始身份认证 (KYC)</h4>
+          <p>注册成功 → 点击「完成身份认证」。KYC 就是实名认证，用于确认你是本人，几分钟搞定。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image5.png" alt="欢迎页面 — 开始身份认证 (KYC)">
+            <figcaption>欢迎页面 — 开始身份认证 (KYC)</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">6</span>
+        <div class="step-text">
+          <h4>选择证件 — 中国身份证</h4>
+          <p>签发国家选「中国」→ 证件类型选「身份证」。也支持护照、驾照。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image6.png" alt="选择证件 — 中国身份证">
+            <figcaption>选择证件 — 中国身份证</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">7</span>
+        <div class="step-text">
+          <h4>准备拍摄证件</h4>
+          <p>准备好身份证正反面，确保清晰、未过期、年满 18 周岁。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image7.png" alt="准备拍摄证件">
+            <figcaption>准备拍摄证件</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">8</span>
+        <div class="step-text">
+          <h4>身份认证完成</h4>
+          <p>拍身份证正反面 + 自拍 → 提交。一般几秒到 5 分钟通过。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image8.png" alt="身份认证完成">
+            <figcaption>身份认证完成</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>5.2 申请 Bybit 虚拟卡</h3>
+      <div class="callout warning">
+        <div class="callout-title"><span class="icon">⚠️</span>重要</div>
+        <p><strong>先别充值！</strong>必须先申卡再充值才算新用户，才能享受首月返现福利。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">9</span>
+        <div class="step-text">
+          <h4>进入主界面 — 激活 Bybit Card</h4>
+          <p>【先别充值！】点击右下角「资产」→「激活我的 Bybit Card」。必须先申卡再充值才算新用户。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image9.png" alt="进入主界面 — 激活 Bybit Card">
+            <figcaption>进入主界面 — 激活 Bybit Card</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">10</span>
+        <div class="step-text">
+          <h4>Bybit Card 权益介绍</h4>
+          <p>虚拟万事达卡，2%-10% 消费返现，0 年费。点击「获取虚拟卡」。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image10.png" alt="Bybit Card 权益介绍">
+            <figcaption>Bybit Card 权益介绍</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">11</span>
+        <div class="step-text">
+          <h4>资格检查 — KYC 国家不匹配</h4>
+          <p>提示 KYC 国家 (China) 与当前地区不符 → 点击「切换国家/地区」。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image11.png" alt="资格检查 — KYC 国家不匹配">
+            <figcaption>资格检查 — KYC 国家不匹配</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">12</span>
+        <div class="step-text">
+          <h4>选择 Kazakhstan（哈萨克斯坦）</h4>
+          <p>在列表中选 Kazakhstan（哈萨克斯坦）。这是唯一支持中国身份且无需地址证明的选项。其他地区要求提供当地居住证明（水电账单等），大陆用户无法提供。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image12.png" alt="选择 Kazakhstan（哈萨克斯坦）">
+            <figcaption>选择 Kazakhstan（哈萨克斯坦）</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">13</span>
+        <div class="step-text">
+          <h4>资格审核通过！</h4>
+          <p>提示「您符合资格」「申请已获批」→ 点击「开始」。如果报错，换个 VPN 节点（如韩国）再试。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image13.png" alt="资格审核通过！">
+            <figcaption>资格审核通过！</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">14</span>
+        <div class="step-text">
+          <h4>Bybit Card 权益确认</h4>
+          <p>确认卡片权益：万事达借记卡，返现 2%-10%。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image14.png" alt="Bybit Card 权益确认">
+            <figcaption>Bybit Card 权益确认</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">15</span>
+        <div class="step-text">
+          <h4>填写居住地址</h4>
+          <p>国家默认哈萨克斯坦。地址查询处随便输两个字母（如 ab）→ 自动匹配哈萨克地址 → 任选一个 → 勾选「无门牌号」→ 确认。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image15.png" alt="填写居住地址">
+            <figcaption>填写居住地址</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">16</span>
+        <div class="step-text">
+          <h4>填写调查问卷</h4>
+          <p>用途选 Trading，职业选 Employed，收入来源 Salary，年收入选 >$100,000。如实或参考填写均可。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image16.png" alt="填写调查问卷">
+            <figcaption>填写调查问卷</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">17</span>
+        <div class="step-text">
+          <h4>确认信息 — 补充手机号</h4>
+          <p>邮箱注册的需补手机号。点击「立即添加」，国内 +86 手机号实测可用。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image17.png" alt="确认信息 — 补充手机号">
+            <figcaption>确认信息 — 补充手机号</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">18</span>
+        <div class="step-text">
+          <h4>添加 +86 手机号</h4>
+          <p>输入手机号 → 收验证码 → 验证通过。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image18.png" alt="添加 +86 手机号">
+            <figcaption>添加 +86 手机号</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">19</span>
+        <div class="step-text">
+          <h4>再次输入邀请码 QMBYWWZ 并提交</h4>
+          <p>【第二次填邀请码！】输入 <code>QMBYWWZ</code> → 勾选同意条款 →「继续」提交。这是开卡专属福利，漏填就没有首月返现。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image19.png" alt="再次输入邀请码 QMBYWWZ 并提交">
+            <figcaption>再次输入邀请码 QMBYWWZ 并提交</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">20</span>
+        <div class="step-text">
+          <h4>申请成功！</h4>
+          <p>显示 <strong>Card Application Succeed!</strong>。卡片已开通，但还需充值才能用。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image20.png" alt="申请成功！">
+            <figcaption>申请成功！</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>5.3 充值 USDT 到 Bybit</h3>
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">💡</span>链类型</div>
+        <p>推荐选 <strong>Aptos 链</strong>：手续费低，Bybit 和 OKX 都支持。转入和转出的链必须完全一致，选错资金永久丢失！</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">21</span>
+        <div class="step-text">
+          <h4>充值页面 — 选择充值方式</h4>
+          <p>推荐「存入加密货币」。P2P 和银行卡方式大陆用户走不通。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image21.png" alt="充值页面 — 选择充值方式">
+            <figcaption>充值页面 — 选择充值方式</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">22</span>
+        <div class="step-text">
+          <h4>选择充值链类型</h4>
+          <p>点击存入加密货币 → 选 USDT → 选链。什么是链？可以理解为不同的转账网络（如银行有银联、Visa）。<strong>【警告：转入和转出的链必须完全一致，选错资金永久丢失！】</strong></p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image22.png" alt="选择充值链类型">
+            <figcaption>选择充值链类型</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">23</span>
+        <div class="step-text">
+          <h4>复制 APTOS 钱包地址</h4>
+          <p>选 Aptos 链 → 出现二维码和钱包地址 → 点击复制。推荐 Aptos：手续费低，Bybit 和 OKX 都支持。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image23.png" alt="复制 APTOS 钱包地址">
+            <figcaption>复制 APTOS 钱包地址</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">24</span>
+        <div class="step-text">
+          <h4>链类型选择参考</h4>
+          <p>确认链类型。常用的还有 TRC20（波场）、BEP20（币安链）。首选 Aptos（手续费低）。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image24.png" alt="链类型选择参考">
+            <figcaption>链类型选择参考</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">25</span>
+        <div class="step-text">
+          <h4>地址已复制 — 下一步去 OKX 买 U</h4>
+          <p>钱包地址复制成功。现在需要去 OKX（欧易交易所）用人民币买 USDT，再提币到 Bybit。OKX 邀请码：42344844。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image25.png" alt="地址已复制 — 下一步去 OKX 买 U">
+            <figcaption>地址已复制 — 下一步去 OKX 买 U</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+
+      <h3>5.4 在 OKX 用人民币买 USDT</h3>
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">💡</span>为什么需要这一步？</div>
+        <p>Bybit 不支持大陆用户直接用人民币充值，所以需要先在 OKX（欧易）用支付宝或微信买 USDT，再转到 Bybit。OKX 邀请码：42344844。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+        <span class="step-num">26</span>
+        <div class="step-text">
+          <h4>OKX 注册并认证 (KYC)</h4>
+          <p>下载 OKX App（欧易），用邀请码 42344844 注册 → 完成身份认证（身份证 + 自拍）。3-5 分钟搞定。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image26.png" alt="OKX 注册并认证 (KYC)">
+            <figcaption>OKX 注册并认证 (KYC)</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">27</span>
+        <div class="step-text">
+          <h4>确认居住国家</h4>
+          <p>在 OKX 确认居住国家/地区为中国。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image27.png" alt="确认居住国家">
+            <figcaption>确认居住国家</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">28</span>
+        <div class="step-text">
+          <h4>选择证件类型</h4>
+          <p>选「中国居民身份证」进行认证。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image28.png" alt="选择证件类型">
+            <figcaption>选择证件类型</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">29</span>
+        <div class="step-text">
+          <h4>进入充值/买币入口</h4>
+          <p>在 OKX 首页点击「买币」或「C2C 交易」。C2C 就是用户之间直接买卖，你用人民币从别人手里买 USDT，平台做担保。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image29.png" alt="进入充值/买币入口">
+            <figcaption>进入充值/买币入口</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">30</span>
+        <div class="step-text">
+          <h4>C2C 买币 — 选择商家</h4>
+          <p>选「快捷区」→ USDT → CNY（人民币）→ 筛选支持支付宝的商家。看商家信誉和交易量。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image30.png" alt="C2C 买币 — 选择商家">
+            <figcaption>C2C 买币 — 选择商家</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">31</span>
+        <div class="step-text">
+          <h4>C2C 商家列表</h4>
+          <p>比较商家价格和交易量，选信誉好的。一般汇率在 7.0-7.3 CNY/USDT 之间。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image31.png" alt="C2C 商家列表">
+            <figcaption>C2C 商家列表</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">32</span>
+        <div class="step-text">
+          <h4>输入购买金额</h4>
+          <p>选按金额购买 → 输入你要买的金额 → 支付方式选支付宝。买多少按需决定（首月充值至少 100 USDT 才解锁返现福利）。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image32.png" alt="输入购买金额">
+            <figcaption>输入购买金额</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">33</span>
+        <div class="step-text">
+          <h4>订单已生成 — 去付款</h4>
+          <p>订单生成，按提示在 30 分钟内用支付宝完成转账。必须使用本人实名支付宝！</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image33.png" alt="订单已生成 — 去付款">
+            <figcaption>订单已生成 — 去付款</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">34</span>
+        <div class="step-text">
+          <h4>打开支付宝转账</h4>
+          <p>按订单信息打开支付宝 → 转账到指定账号。不要用支付宝转银行卡功能。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image34.png" alt="打开支付宝转账">
+            <figcaption>打开支付宝转账</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">35</span>
+        <div class="step-text">
+          <h4>支付宝转账确认</h4>
+          <p>确认金额和备注 → 完成支付 → 截图保存。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image35.png" alt="支付宝转账确认">
+            <figcaption>支付宝转账确认</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">36</span>
+        <div class="step-text">
+          <h4>上传支付凭证</h4>
+          <p>回 OKX 上传支付宝转账截图 → 等待商家确认放币。一般几分钟内 USDT 就到账。</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image36.png" alt="上传支付凭证">
+            <figcaption>上传支付凭证</figcaption>
+          </figure></div></div>
+        </div>
+        
+        <div class="step">
+        <span class="step-num">37</span>
+        <div class="step-text">
+          <h4>USDT 到账 OKX</h4>
+          <p>确认 USDT 已到 OKX 资金账户。接下来可以提币到 Bybit。（提币流程：OKX 资产 → USDT → 提币 → 选 Aptos 链 → 粘贴 Bybit 钱包地址 → 确认）</p>
+        </div>
+        <div class="step-img"><div class="step-img-scroll"><figure>
+            <img src="assets/bybit/image37.png" alt="USDT 到账 OKX">
+            <figcaption>USDT 到账 OKX</figcaption>
+          </figure></div></div>
+        </div>
+              </div>
+
+    </section><section class="chapter" id="ch-06">
+      <h2><span class="ch-num">06</span>长期保号</h2>
+      <p class="chapter-intro">号码办下来只是开始。<strong>长期不用，运营商会回收号码</strong>。本章介绍 giffgaff 和 Saily 的保号规则和成本。</p>
+
+      <h3>6.1 giffgaff 保号</h3>
+      <ul>
+        <li><strong>规则：</strong>每 180 天内至少产生一次「主动操作」（发短信 / 收短信 / 打电话 / 上网）</li>
+        <li><strong>最低成本：</strong>发一条短信（约 £0.10 ≈ ¥1，海外发送至中国大陆号码）</li>
+        <li><strong>推荐方法：</strong>每 6 个月给任意手机号（含自己的国内号）发一条短信</li>
+        <li><strong>年成本：</strong>&lt; ¥10</li>
+      </ul>
+
+      <div class="callout tip">
+        <div class="callout-title"><span class="icon">✅</span>保号操作示例</div>
+        <p>登录 giffgaff App → 进入"我的号码" → 给任意号码发送一条短信（哪怕只写一个"hi"）→ 完成。</p>
+      </div>
+
+      <h3>6.2 Saily 保号</h3>
+      <ul>
+        <li><strong>规则：</strong>每月自动续费 $0.99 维持套餐，含 30 分钟通话 + 30 条短信</li>
+        <li><strong>最低成本：</strong>$0.99/月 ≈ ¥7/月，<strong>年成本约 ¥84</strong></li>
+        <li><strong>注意：</strong>欠费超过 60 天号码会被回收</li>
+      </ul>
+
+      <h3>6.3 两种方案成本对比</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>方案</th>
+            <th>开通费</th>
+            <th>月费</th>
+            <th>年成本</th>
+            <th>保号难度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>giffgaff（英国）</strong></td>
+            <td>£10 (≈¥90)</td>
+            <td>0</td>
+            <td>≈ ¥100（一次性）</td>
+            <td>⭐ 发一条短信</td>
+          </tr>
+          <tr>
+            <td><strong>Saily（美国）</strong></td>
+            <td>$0.6 (≈¥4)</td>
+            <td>$0.99 (≈¥7)</td>
+            <td>≈ ¥88</td>
+            <td>⭐ 自动续费</td>
+          </tr>
+          <tr>
+            <td><strong>双号组合</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>≈ ¥188 / 后续每年</td>
+            <td>每年 2 次操作</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>6.4 保号提醒设置</h3>
+      <p>建议在手机日历设置每 6 个月一次的重复提醒，标题写"giffgaff 保号"。</p>
+    </section>
+
+    <!-- ============== CHAPTER 07 - PLAN RECOMMENDATIONS ============== -->
+    <section class="chapter" id="ch-07">
+      <h2><span class="ch-num">07</span>方案推荐</h2>
+      <p class="chapter-intro">根据不同使用场景，帮你选最合适的方案。</p>
+
+      <h3>场景 1：只想最低成本拿一个海外号</h3>
+      <p><strong>推荐：</strong>giffgaff 单方案</p>
+      <ul>
+        <li>开通：£10 (≈¥90)，一次性</li>
+        <li>月租：0</li>
+        <li>年成本：&lt; ¥10（保号）</li>
+        <li>总成本：<strong>≈ ¥100，永久使用</strong></li>
+      </ul>
+
+      <h3>场景 2：需要美区服务（+1 号码）</h3>
+      <p><strong>推荐：</strong>Saily 单方案</p>
+      <ul>
+        <li>开通：$0.6 (≈¥4)</li>
+        <li>月租：$0.99 (≈¥7)</li>
+        <li>适用：需要美服注册、短信接收美区验证码</li>
+      </ul>
+
+      <h3>场景 3：想拥有 +44 + +1 双号</h3>
+      <p><strong>推荐：</strong>giffgaff + Saily 组合</p>
+      <ul>
+        <li>开通总成本：≈ ¥94</li>
+        <li>后续月费：≈ ¥7（仅 Saily）</li>
+        <li>优势：英国 + 美国双号，覆盖 90% 海外服务</li>
+      </ul>
+
+      <h3>场景 4：需要海外消费 + 海外号</h3>
+      <p><strong>推荐：</strong>giffgaff + Bybit Card</p>
+      <ul>
+        <li>giffgaff：海外手机号（注册海外服务）</li>
+        <li>Bybit Card：海外消费（订阅海外服务、支付海外商家）</li>
+        <li>成本：giffgaff ¥100 + Bybit 充值按需</li>
+      </ul>
+
+      <h3>场景 5：全套（最稳）</h3>
+      <p><strong>推荐：</strong>giffgaff + Saily + Bybit Card</p>
+      <ul>
+        <li>两个海外号 + 一张虚拟卡 = 一站式海外身份</li>
+        <li>首年总成本：≈ ¥280（一次性 + 月费）</li>
+        <li>次年起年成本：≈ ¥85（仅 Saily 月租）</li>
+      </ul>
+    </section>
+
+    <!-- ============== CHAPTER 08 - FAQ ============== -->
+    <section class="chapter" id="ch-08">
+      <h2><span class="ch-num">08</span>FAQ</h2>
+      <p class="chapter-intro">集中整理常见问题，按主题分组。</p>
+
+      <h3>为什么要海外手机号？</h3>
+      <div class="faq-item">
+        <div class="faq-q">海外手机号有什么用？</div>
+        <div class="faq-a">主要用于：注册 Telegram / Gmail / WhatsApp / 海外银行 / 部分 AI 服务订阅、接收海外服务验证码。一些服务必须用海外手机号才能注册。</div>
+      </div>
+
+      <h3>国行手机是否支持？</h3>
+      <div class="faq-item">
+        <div class="faq-q">iPhone 国行支持 eSIM 吗？</div>
+        <div class="faq-a">iPhone 13 及以上国行机型<strong>原生支持</strong>，可直接扫描二维码或粘贴 LPA 激活码。iPhone 12 及以下国行机型不支持 eSIM。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Android 国行支持 eSIM 吗？</div>
+        <div class="faq-a">部分支持（如华为部分机型不支持）。不支持的机型需要购买<strong>小白卡</strong>（约 ¥20）配合 <strong>EPUICC</strong> 软件写入。</div>
+      </div>
+
+      <h3>如何保号？</h3>
+      <div class="faq-item">
+        <div class="faq-q">giffgaff 不充值会被回收吗？</div>
+        <div class="faq-a">如果连续 180 天没有任何主动操作（发短信、打电话、上网、收短信），号码会被回收。<strong>建议每 6 个月发一条短信保号。</strong></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Saily 欠费会怎样？</div>
+        <div class="faq-a">欠费超过 60 天号码会被注销。月租 $0.99 建议保持账户有余额或开启自动续费。</div>
+      </div>
+
+      <h3>收不到验证码怎么办？</h3>
+      <div class="faq-item">
+        <div class="faq-q">giffgaff 注册收不到验证码邮件？</div>
+        <div class="faq-a">1）检查垃圾邮件箱；2）确认邮箱拼写无误；3）尝试 Gmail/Outlook 而非 163/QQ；4）等待 5-10 分钟。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Bybit 短信收不到？</div>
+        <div class="faq-a">挂 VPN 后再请求；部分国内运营商对 + 国际短信有拦截，可改用邮箱验证。</div>
+      </div>
+
+      <h3>eSIM 安装失败怎么办？</h3>
+      <div class="faq-item">
+        <div class="faq-q">giffgaff 提取不到激活码？</div>
+        <div class="faq-a">确保使用<strong>修改版 giffgaff App</strong>（已自动绕过硬件检测）。如仍失败，联系教程提供者。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Saily eSIM 安装失败？</div>
+        <div class="faq-a">1）确认 KYC 已通过；2）检查网络；3）尝试切换"扫码安装"和"粘贴激活码"两种方式；4）国行手机需用小白卡 + EPUICC 导入。</div>
+      </div>
+
+      <h3>价格与稳定性</h3>
+      <div class="faq-item">
+        <div class="faq-q">哪种方案最便宜？</div>
+        <div class="faq-a"><strong>giffgaff</strong>：一次性 £10，0 月租，保号成本低。综合年成本最低。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">哪种方案最稳定？</div>
+        <div class="faq-a"><strong>giffgaff</strong>：英国老牌 MVNO，号码稳定，不会随意被回收。<strong>Saily</strong>：相对年轻，但 30 分钟 + 30 条短信足够日常使用。</div>
+      </div>
+
+      <h3>支付与合规</h3>
+      <div class="faq-item">
+        <div class="faq-q">可以只用国内双标信用卡吗？</div>
+        <div class="faq-a">可以。giffgaff 和 Saily 都接受 Visa / Mastercard。国内招行、中行、工行的双标卡都能用。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Bybit 充值一定要买 USDT 吗？</div>
+        <div class="faq-a">对大陆用户来说，<strong>目前最可行的方式</strong>是：人民币 → 支付宝 → OKX 买 USDT → 提币到 Bybit。其他方式（P2P、银行卡）走不通或风险高。</div>
+      </div>
+    </section>
+
+    <!-- ============== CHAPTER 09 - APPENDIX ============== -->
+    <section class="chapter" id="ch-09">
+      <h2><span class="ch-num">09</span>附录</h2>
+
+      <h3>邀请码 / 优惠码汇总</h3>
+      <table>
+        <thead>
+          <tr><th>服务</th><th>代码</th><th>使用次数</th><th>作用</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Saily</td><td><code>MEATRI8898</code></td><td>1 次</td><td>开通费 $7.98 → $0.6</td></tr>
+          <tr><td>Bybit</td><td><code>QMBYWWZ</code></td><td>2 次</td><td>注册 + 开卡（首月返现）</td></tr>
+          <tr><td>OKX</td><td><code>42344844</code></td><td>1 次</td><td>注册奖励</td></tr>
+        </tbody>
+      </table>
+
+      <h3>常用费率参考</h3>
+      <table>
+        <thead>
+          <tr><th>服务</th><th>费用项</th><th>金额</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>giffgaff 开通</td><td>PAYG 起步充值</td><td>£10 (≈¥90)</td></tr>
+          <tr><td>giffgaff 数据</td><td>按需</td><td>10p / MB</td></tr>
+          <tr><td>giffgaff 短信</td><td>按需</td><td>10p / 条</td></tr>
+          <tr><td>giffgaff 通话</td><td>按需</td><td>25p / 分钟</td></tr>
+          <tr><td>Saily 开通</td><td>含优惠码</td><td>$0.6 (≈¥4)</td></tr>
+          <tr><td>Saily 月租</td><td>30 分 + 30 短信</td><td>$0.99 (≈¥7)</td></tr>
+          <tr><td>Bybit Card</td><td>年费</td><td>0</td></tr>
+          <tr><td>Bybit Card 返现</td><td>消费返现</td><td>2% ~ 10%</td></tr>
+          <tr><td>USDT 汇率</td><td>C2C 大致</td><td>7.0 ~ 7.3 CNY/USDT</td></tr>
+        </tbody>
+      </table>
+
+      <h3>更新时间线</h3>
+      <ul>
+        <li><strong>2026-06 v1.0</strong>：初始版本，整合 Saily / Bybit Card / giffgaff 三份原始教程</li>
+      </ul>
+
+      <h3>参考来源</h3>
+      <ul>
+        <li>原始教程：<code>Saily-eSIM教程.docx</code></li>
+        <li>原始教程：<code>Bybit-Card开卡教程.docx</code></li>
+        <li>原始教程：<code>giffgaff-eSIM教程.docx</code></li>
+        <li>项目规范：<code>海外 eSIM 完整指南.pdf</code></li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Highlight TOC on scroll
+  (function() {
+    const links = document.querySelectorAll('.toc a[href^="#ch-"]');
+    const sections = Array.from(document.querySelectorAll('.chapter'));
+    function onScroll() {
+      let current = '';
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top <= 120) current = sec.id;
+      });
+      links.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+  })();
+
+  // Horizontal wheel scrolling for .steps containers
+  document.querySelectorAll('.steps').forEach(strip => {
+    strip.addEventListener('wheel', (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        strip.scrollLeft += e.deltaY * 1.2;
+      }
+    }, { passive: false });
+
+    // Drag scrolling
+    let isDown = false, startX, startScroll, moved = false;
+    strip.addEventListener('mousedown', (e) => {
+      isDown = true; moved = false;
+      startX = e.pageX; startScroll = strip.scrollLeft;
+      strip.classList.add('dragging');
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('dragging'); });
+    strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('dragging'); });
+    strip.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 3) moved = true;
+      strip.scrollLeft = startScroll - dx;
+    });
+  });
+</script>
+</body>
+</html>
