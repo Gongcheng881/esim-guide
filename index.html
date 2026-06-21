@@ -812,6 +812,23 @@
 </style>
 </head>
 <body>
+<!-- ==== 使用引导提示 ==== -->
+<div id="usage-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#FFF7ED;border-bottom:2px solid #F59E0B;padding:14px 20px;font-size:13px;line-height:1.6;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1);">
+  <span id="banner-text"></span>
+  <button onclick="document.getElementById('usage-banner').style.display='none'" style="margin-left:16px;padding:4px 14px;background:#F59E0B;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;">✕ 我知道了</button>
+</div>
+<script>
+(function() {
+  var isLocal = location.protocol === 'file:';
+  var banner = document.getElementById('usage-banner');
+  var text = document.getElementById('banner-text');
+  if (isLocal) {
+    text.innerHTML = '⚠️ <b>你正在本地打开这个 HTML 文件</b> — 图片需要放到 <code>assets/</code> 文件夹里才能正常显示。推荐直接访问网页版：<b><a href="https://gongcheng881.github.io/esim-guide/" target="_blank" style="color:#D97706;">https://gongcheng881.github.io/esim-guide/</a></b>';
+    banner.style.display = 'block';
+  }
+})();
+</script>
+
 <div class="layout">
 
   <!-- ========== SIDEBAR TOC ========== -->
@@ -1278,7 +1295,7 @@
 
       <div class="callout tip">
         <div class="callout-title"><span class="icon">📱</span>eSIM 激活码转二维码</div>
-        <p>拿到 <code>LPA:1$...</code> 开头的激活码后，到 <a href="https://qrcode.show/" target="_blank" rel="noopener">qrcode.show</a> 把激活码转成二维码，然后用手机系统相机扫码即可写入 eSIM。</p>
+        <p>拿到 <code>LPA:1$...</code> 开头的激活码后，到 <a href="https://qrcode.show/" target="_blank" rel="noopener">qrcode.show</a> 把激活码转成二维码，然后用<strong>eSIM 激活软件</strong>扫码即可写入 eSIM。</p>
       </div>
 
     </section><section class="chapter" id="ch-04">
